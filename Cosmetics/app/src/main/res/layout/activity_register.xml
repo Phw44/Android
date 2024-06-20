@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#2E90B0"
+    android:background="@drawable/img_1"
     >
 
     <ImageView
@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:background="#FFFFFF"
+        android:background="#E290B0"
         app:cardCornerRadius="20dp"
         android:layout_marginTop="16dp"
         app:cardElevation="8dp">
@@ -39,7 +39,7 @@
                 android:layout_gravity="center"
                 android:paddingVertical="5dp"
                 android:text="Đăng kí"
-                android:textColor="#2E90B0"
+                android:textColor="#E290B0"
                 android:textSize="34sp"
                 android:textStyle="bold" />
 
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Kiểm tra kỹ thông tin"
-                android:textColor="#2239B6"
+                android:textColor="#E290B0"
                 android:textStyle="italic"
                 />
 
@@ -81,7 +81,7 @@
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:backgroundTint="#2E90B0"
+                android:backgroundTint="#E290B0"
                 android:text="Đăng kí"
                 android:textSize="20dp"
                 android:textColor="#FFFFFF" />
@@ -104,7 +104,7 @@
                     android:layout_height="wrap_content"
                     android:text="Đăng nhập ngay"
                     android:textStyle="italic"
-                    android:textColor="#2E90B0"
+                    android:textColor="#E290B0"
                     />
             </LinearLayout>
 
