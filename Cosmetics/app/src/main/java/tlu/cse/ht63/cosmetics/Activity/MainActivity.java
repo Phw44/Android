@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
+
         // Khởi tạo FirebaseAuth
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
@@ -93,10 +95,12 @@ public class MainActivity extends AppCompatActivity {
         initItemsPopular();
         initUI();
         initLisner();
+        bottomNavigation();
 
         edtSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
             }
 
             @Override
@@ -111,6 +115,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void bottomNavigation() {
+        binding.cartBtn.setOnClickListener(v -> startActivity(new Intent(MainActivity.this
+        , CartActivity.class)));
     }
 
     private void initLisner() {

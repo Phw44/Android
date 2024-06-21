@@ -164,6 +164,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/cart_btn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -172,9 +173,9 @@
 
                     <ImageView
                         android:id="@+id/imageView32"
-                        android:layout_gravity="center"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
+                        android:layout_gravity="center"
                         app:srcCompat="@drawable/ic_cart" />
 
                     <TextView

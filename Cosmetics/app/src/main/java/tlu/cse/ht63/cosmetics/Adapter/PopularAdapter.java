@@ -1,6 +1,7 @@
 package tlu.cse.ht63.cosmetics.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +11,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import tlu.cse.ht63.cosmetics.Activity.DetailActivity;
 import tlu.cse.ht63.cosmetics.Model.ItemsPopularModel;
 import tlu.cse.ht63.cosmetics.R;
 
@@ -45,6 +46,19 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.Viewhold
         Glide.with(context)
                 .load(item.getPicUrl().get(0))
                 .into(holder.imgProduct);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int adapterPosition = holder.getAdapterPosition();
+                if (adapterPosition != RecyclerView.NO_POSITION) {
+                    ItemsPopularModel clickedItem = items.get(adapterPosition);
+                    Intent intent = new Intent(context, DetailActivity.class);
+                    intent.putExtra("object", clickedItem);
+                    context.startActivity(intent);
+                }
+            }
+        });
     }
 
     @Override
