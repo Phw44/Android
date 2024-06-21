@@ -1,4 +1,4 @@
-package tlu.cse.ht63.cosmetics;
+package tlu.cse.ht63.cosmetics.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,8 +19,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import tlu.cse.ht63.cosmetics.R;
+
 public class RegisterActivity extends AppCompatActivity {
-    EditText edtTenTK, edtPassword;
+    EditText edtTenTK, edtPassword, edtCPassword;
     Button btnRegister;
     TextView tvLogin;
     ProgressBar progressBar;
@@ -48,6 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         edtTenTK = findViewById(R.id.edtTenTK);
         edtPassword = findViewById(R.id.edtPassword);
+        edtCPassword = findViewById(R.id.edtCPassword);
         btnRegister = findViewById(R.id.btnRegister);
         tvLogin = findViewById(R.id.tvLogin);
         progressBar = findViewById(R.id.progressBar);
@@ -65,28 +68,34 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = edtTenTK.getText().toString(); // Assuming edtTenTK is for email input
                 String password = edtPassword.getText().toString();
+                String CPassword = edtCPassword.getText().toString();
 
-                if (email.isEmpty() || password.isEmpty()) {
+                if (email.isEmpty() || password.isEmpty() || CPassword.isEmpty()) {
                     Toast.makeText(RegisterActivity.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                 } else {
-                    progressBar.setVisibility(View.VISIBLE);
-                    mAuth.createUserWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    progressBar.setVisibility(View.GONE);
-                                    if (task.isSuccessful()) {
-                                        // Sign in success, update UI with the signed-in user's information
-                                        FirebaseUser user = mAuth.getCurrentUser();
-                                        Toast.makeText(RegisterActivity.this, "Đăng kí tài khoản thành công", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(RegisterActivity.this, RegisterActivity.class));
-                                        finish();
-                                    } else {
-                                        // If sign in fails, display a message to the user.
-                                        Toast.makeText(RegisterActivity.this, "Đăng kí tài khoản thất bại.", Toast.LENGTH_SHORT).show();
+                    if(password.equals(CPassword)){
+                        progressBar.setVisibility(View.VISIBLE);
+                        mAuth.createUserWithEmailAndPassword(email, password)
+                                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        progressBar.setVisibility(View.GONE);
+                                        if (task.isSuccessful()) {
+                                            // Sign in success, update UI with the signed-in user's information
+                                            FirebaseUser user = mAuth.getCurrentUser();
+                                            Toast.makeText(RegisterActivity.this, "Đăng kí tài khoản thành công", Toast.LENGTH_SHORT).show();
+                                            startActivity(new Intent(RegisterActivity.this, RegisterActivity.class));
+                                            finish();
+                                        } else {
+                                            // If sign in fails, display a message to the user.
+                                            Toast.makeText(RegisterActivity.this, "Đăng kí tài khoản thất bại.", Toast.LENGTH_SHORT).show();
+                                        }
                                     }
-                                }
-                            });
+                                });
+                    }else{
+                        Toast.makeText(RegisterActivity.this, "Mật khẩu vừa nhập không khớp nhau", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             }
         });
