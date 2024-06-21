@@ -2,19 +2,20 @@ package tlu.cse.ht63.cosmetics.Model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ItemsPopularModel implements Serializable {
     private String title;
+    private String description;
     private ArrayList<String> picUrl;
     private double price;
+    private int NumberInCart;
 
-    public ItemsPopularModel(){
-
+    public ItemsPopularModel() {
     }
 
-    public ItemsPopularModel(String title, ArrayList<String> picUrl, double price) {
+    public ItemsPopularModel(String title, String description, ArrayList<String> picUrl, double price) {
         this.title = title;
+        this.description = description;
         this.picUrl = picUrl;
         this.price = price;
     }
@@ -25,6 +26,14 @@ public class ItemsPopularModel implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public ArrayList<String> getPicUrl() {
@@ -41,5 +50,13 @@ public class ItemsPopularModel implements Serializable {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getNumberInCart() {
+        return NumberInCart;
+    }
+
+    public void setNumberInCart(int NumberInCart) {
+        this.NumberInCart = NumberInCart;
     }
 }

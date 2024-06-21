@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import tlu.cse.ht63.cosmetics.Adapter.PopularAdapter;
 import tlu.cse.ht63.cosmetics.Model.ItemsPopularModel;
 import tlu.cse.ht63.cosmetics.R;
-//note
+
 import tlu.cse.ht63.cosmetics.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -50,38 +50,36 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
 
-//        button = findViewById(R.id.btnLogout);
-//        textView = findViewById(R.id.textView);
-//
-//        // Khởi tạo FirebaseAuth
-//        auth = FirebaseAuth.getInstance();
-//        user = auth.getCurrentUser();
-//
-//        // Kiểm tra nếu người dùng chưa đăng nhập
-//        if (user == null) {
-//            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//            startActivity(intent);
-//            finish();
-//        } else {
-//            // Hiển thị email của người dùng
-//            textView.setText(user.getEmail());
-//        }
-//
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Đăng xuất người dùng
-//                auth.signOut();
-//                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
-
+        // Khởi tạo binding
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        // Khởi tạo FirebaseAuth
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+
+        // Kiểm tra nếu người dùng chưa đăng nhập
+        if (user == null) {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+            return; // Thoát sớm nếu người dùng chưa đăng nhập
+        } else {
+            // Hiển thị email của người dùng
+            binding.textView.setText(user.getEmail());
+        }
+
+        // Đăng xuất người dùng
+        binding.btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                auth.signOut();
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         items = new ArrayList<>();
         originalItems = new ArrayList<>(); // Initialize the originalItems list
@@ -164,7 +162,6 @@ public class MainActivity extends AppCompatActivity {
         }
         adapter.updateList(filteredList);
     }
-
 
     private void initUI() {
         edtSearch = findViewById(R.id.edtSearch);
