@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "319108220683",
+    "firebase_url": "https://cosmetics-2fce2-default-rtdb.firebaseio.com",
+    "project_id": "cosmetics-2fce2",
+    "storage_bucket": "cosmetics-2fce2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319108220683:android:cd9377285380a0bc27440e",
+        "android_client_info": {
+          "package_name": "tlu.cse.ht63.cosmetics"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDH4XIudtIk8DjzlZOxptZgiSx7CIFvCiU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
