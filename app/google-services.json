@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "604199362915",
+    "project_id": "cosmetics-37173",
+    "storage_bucket": "cosmetics-37173.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604199362915:android:1b51e569c0c20ea7e1f356",
+        "android_client_info": {
+          "package_name": "tlu.cse.ht63.cosmetics"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA44JeMOvgp4Xc0mdxB9-Kfp_0TbgRrhP4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
