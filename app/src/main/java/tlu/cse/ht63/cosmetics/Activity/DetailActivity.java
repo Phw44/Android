@@ -55,7 +55,7 @@ public class DetailActivity extends BaseActivity {
         ArrayList<SliderItems> sliderItems=new ArrayList<>();
         for (int i = 0; i < object.getPicUrl().size(); i++) {
             sliderItems.add(new SliderItems(object.getPicUrl().get(i)));
-            
+
         }
         binding.viewpageSlider.setAdapter(new SliderAdapter(sliderItems, binding.viewpageSlider));
         binding.viewpageSlider.setClipToPadding(false);

@@ -13,11 +13,10 @@ public class ItemsPopularModel implements Serializable {
     public ItemsPopularModel() {
     }
 
-    public ItemsPopularModel(String title, String description, ArrayList<String> picUrl, double price) {
+    public ItemsPopularModel(String title, double price, int numberInCart) {
         this.title = title;
-        this.description = description;
-        this.picUrl = picUrl;
         this.price = price;
+        this.NumberInCart = numberInCart;
     }
 
     public String getTitle() {

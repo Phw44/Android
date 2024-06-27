@@ -1,13 +1,33 @@
 {
   "project_info": {
-    "project_number": "604199362915",
-    "project_id": "cosmetics-37173",
-    "storage_bucket": "cosmetics-37173.appspot.com"
+    "project_number": "354135573268",
+    "firebase_url": "https://btl-android-c738b-default-rtdb.firebaseio.com",
+    "project_id": "btl-android-c738b",
+    "storage_bucket": "btl-android-c738b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:604199362915:android:1b51e569c0c20ea7e1f356",
+        "mobilesdk_app_id": "1:354135573268:android:1c95ff560dc349fc35b801",
+        "android_client_info": {
+          "package_name": "com.example.btl_android"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAb57dSO0iFs2MT5gc62yfrNfupysla3sU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:354135573268:android:576b3e4a61eaf43835b801",
         "android_client_info": {
           "package_name": "tlu.cse.ht63.cosmetics"
         }
@@ -15,7 +35,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyA44JeMOvgp4Xc0mdxB9-Kfp_0TbgRrhP4"
+          "current_key": "AIzaSyAb57dSO0iFs2MT5gc62yfrNfupysla3sU"
         }
       ],
       "services": {

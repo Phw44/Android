@@ -81,7 +81,7 @@
                     android:layout_weight="1"
                     android:singleLine="true"
                     android:text="Title"
-                    android:textColor="#F58791"
+                    android:textColor="@color/black"
                     android:textSize="23sp"
                     android:textStyle="bold" />
 
@@ -90,7 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="$0"
-                    android:textColor="#590910"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -119,8 +119,11 @@
                         app:tabMaxWidth="0dp"
                         app:tabMode="fixed"
                         app:tabSelectedTextColor="@color/pink"
-                        app:tabTextAppearance="@style/tab_layout"
-                        app:tabTextColor="@color/black" />
+
+                        app:tabTextColor="@color/black"/>
+
+<!--                        app:tabTextAppearance="@style/tab_layout"-->
+
 
                     <View
                         android:id="@+id/view"

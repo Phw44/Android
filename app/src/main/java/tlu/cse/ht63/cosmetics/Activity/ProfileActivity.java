@@ -11,7 +11,6 @@ import androidx.core.view.WindowInsetsCompat;
 import tlu.cse.ht63.cosmetics.R;
 
 public class ProfileActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
