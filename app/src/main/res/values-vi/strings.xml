@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Cosmetics</string>
+
+    <!-- profile -->
+    <string name="text_member">Thành viên</string>
+    <string name="update_profile">Cập Nhật Hồ Sơ</string>
+    <string name="settings">Cài Đặt</string>
+    <string name="about_us">Về Chúng Tôi</string>
+    <string name="logout">Đăng Xuất</string>
+
+    <!-- main -->
+    <string name="search_hint">Tìm kiếm ở đây</string>
+    <string name="txt_products">Các sản phẩm</string>
+    <string name="txt_explorer">Khám phá</string>
+    <string name="txt_cart">Giỏ hàng</string>
+    <string name="txt_profile">Hồ sơ</string>
+
+    <!--    cart-->
+    <string name="my_cart">Giỏ hàng</string>
+    <string name="edtCoupon">Nhập mã giảm giá</string>
+    <string name="btn_apply">Áp dụng</string>
+    <string name="Subtotal">Tổng tiền hàng</string>
+    <string name="Delivery">Phí giao hàng</string>
+    <string name="tax">Thuế</string>
+    <string name="total">Tổng</string>
+    <string name="checkout">Thanh toán</string>
+</resources>
