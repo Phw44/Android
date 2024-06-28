@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void bottomNavigation() {
         binding.cartBtn.setOnClickListener(v -> startActivity(new Intent(MainActivity.this
-        , CartActivity.class)));
+                , CartActivity.class)));
     }
 
     private void initLisner() {

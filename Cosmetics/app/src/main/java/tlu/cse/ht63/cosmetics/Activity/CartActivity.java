@@ -7,6 +7,7 @@ import tlu.cse.ht63.cosmetics.Adapter.CartAdapter;
 import tlu.cse.ht63.cosmetics.Helper.ManagmentCart;
 import tlu.cse.ht63.cosmetics.databinding.ActivityCartBinding;
 
+
 public class CartActivity extends BaseActivity {
 
     ActivityCartBinding binding;
@@ -18,7 +19,6 @@ public class CartActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityCartBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         managmentCart = new ManagmentCart(this);
         caculatorCart();
         setVariable();
@@ -46,7 +46,7 @@ public class CartActivity extends BaseActivity {
         double percentTax = 0.02;
         double delivery = 10;
         tax = Math.round((managmentCart.getTotalFee() * percentTax * 100.0)) / 100.0;
-        double total = Math.round((managmentCart.getTotalFee() + tax + delivery) * 100) / 100;
+        double total = ((managmentCart.getTotalFee() + tax + delivery) * 100) / 100;
         double itemTotal = Math.round(managmentCart.getTotalFee() * 100) / 100;
 
         binding.totalFeeTxt.setText("$" + itemTotal);
