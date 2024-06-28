@@ -9,12 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import java.util.List;
-
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -51,11 +49,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
 
-        // Khởi tạo binding
+//         Khởi tạo binding
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-
 
         // Khởi tạo FirebaseAuth
         auth = FirebaseAuth.getInstance();
@@ -67,21 +63,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
             return; // Thoát sớm nếu người dùng chưa đăng nhập
-        } else {
-            // Hiển thị email của người dùng
-            binding.textView.setText(user.getEmail());
         }
-
-        // Đăng xuất người dùng
-        binding.btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                auth.signOut();
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+//        else {
+//            // Hiển thị email của người dùng
+//            binding.textView.setText(user.getEmail());
+//        }
 
         items = new ArrayList<>();
         originalItems = new ArrayList<>(); // Initialize the originalItems list
