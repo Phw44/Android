@@ -48,4 +48,5 @@ dependencies {
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
     implementation("com.google.code.gson:gson:2.8.9")
     implementation ("androidx.databinding:databinding-runtime:7.0.3")
+
 }

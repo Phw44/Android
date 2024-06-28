@@ -2,11 +2,12 @@ package tlu.cse.ht63.cosmetics.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,7 +24,7 @@ import tlu.cse.ht63.cosmetics.Model.ItemsPopularModel;
 import tlu.cse.ht63.cosmetics.Model.Order;
 import tlu.cse.ht63.cosmetics.databinding.ActivityCheckoutBinding;
 
-public class CheckoutActivity extends AppCompatActivity {
+public class CheckoutActivity extends BaseActivity {
 
     private RecyclerView cartRecyclerView;
     private ActivityCheckoutBinding binding;
@@ -75,14 +76,9 @@ public class CheckoutActivity extends AppCompatActivity {
                 String phoneNumber = binding.customerPhoneTxt.getText().toString().trim();
                 String address = binding.customerAddressTxt.getText().toString().trim();
 
+                // Kiểm tra thông tin khách hàng
                 if (customerName.isEmpty() || phoneNumber.isEmpty() || address.isEmpty()) {
                     Toast.makeText(CheckoutActivity.this, "Vui lòng điền đầy đủ thông tin khách hàng", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                // Kiểm tra xem giỏ hàng có sản phẩm hay không
-                if (productList.isEmpty()) {
-                    Toast.makeText(CheckoutActivity.this, "Giỏ hàng của bạn đang trống!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -124,6 +120,7 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
     private void saveOrderToDatabase(String customerName, String phoneNumber, String address, double totalPrice) {
+
         DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference().child("orders");
         String orderId = ordersRef.push().getKey();
 
@@ -132,11 +129,12 @@ public class CheckoutActivity extends AppCompatActivity {
             productNames.add(item.getTitle());
         }
 
+        // Chuyển đổi totalPrice từ double sang String
         Order order = new Order(orderId, customerName, phoneNumber, address, productNames, String.valueOf(totalPrice));
 
         ordersRef.child(orderId).setValue(order, new DatabaseReference.CompletionListener() {
             @Override
-            public void onComplete(@NonNull DatabaseError error, @NonNull DatabaseReference ref) {
+            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                 if (error == null) {
                     // Lưu thành công
                     Toast.makeText(CheckoutActivity.this, "Đặt hàng thành công!", Toast.LENGTH_SHORT).show();
@@ -146,8 +144,10 @@ public class CheckoutActivity extends AppCompatActivity {
                     // Lỗi khi lưu
                     Toast.makeText(CheckoutActivity.this, "Đặt hàng thất bại. Vui lòng thử lại!", Toast.LENGTH_SHORT).show();
                     error.toException().printStackTrace();
+                    Log.e("FirebaseError", "Lỗi khi lưu đơn hàng: ", error.toException());
                 }
             }
         });
     }
+
 }

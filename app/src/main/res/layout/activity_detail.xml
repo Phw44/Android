@@ -55,14 +55,14 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="300dp"
                 android:layout_margin="20dp"
                 android:background="@drawable/grey_background">
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/viewpageSlider"
                     android:layout_width="match_parent"
-                    android:layout_height="290dp"
+                    android:layout_height="300dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -135,7 +135,7 @@
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/viewpager"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
+                    android:layout_height="100dp"
                     android:background="@color/white" />
             </LinearLayout>
 

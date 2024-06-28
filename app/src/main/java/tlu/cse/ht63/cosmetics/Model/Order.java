@@ -7,10 +7,13 @@ public class Order {
     private String customerName;
     private String phoneNumber;
     private String address;
-    private List<String> productNames; // Thay đổi từ String thành List<String>
-    private String totalPrice; // Chỉnh sửa thành String
+    private List<String> productNames;
+    private String totalPrice;
 
-    // Constructor
+    public Order() {
+        // Default constructor required for Firebase
+    }
+
     public Order(String orderId, String customerName, String phoneNumber, String address, List<String> productNames, String totalPrice) {
         this.orderId = orderId;
         this.customerName = customerName;
@@ -20,7 +23,6 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
-    // Getters and setters (optional based on your usage)
     public String getOrderId() {
         return orderId;
     }

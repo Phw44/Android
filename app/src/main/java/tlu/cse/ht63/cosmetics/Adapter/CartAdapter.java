@@ -41,7 +41,46 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Viewholder> {
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
         ItemsPopularModel item = listItemSelected.get(position);
-        holder.bind(item);
+        holder.binding.titleTxt.setText(item.getTitle());
+        holder.binding.feeEachItem.setText("$" + item.getPrice());
+        holder.binding.totalEachItem.setText("$" + Math.round(item.getNumberInCart() * item.getPrice()));
+        holder.binding.numberItemTxt.setText(String.valueOf(item.getNumberInCart()));
+
+        RequestOptions requestOptions = new RequestOptions().transform(new CenterCrop());
+        Glide.with(holder.itemView.getContext()).load(item.getPicUrl().get(0))
+                .apply(requestOptions).into(holder.binding.pic);
+
+        holder.binding.plusCartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int adapterPosition = holder.getAdapterPosition();
+                if (adapterPosition != RecyclerView.NO_POSITION) {
+                    ArrayList<ItemsPopularModel> arrayList = new ArrayList<>(listItemSelected);
+                    managmentCart.plusItem(arrayList, adapterPosition, () -> {
+                        listItemSelected.clear();
+                        listItemSelected.addAll(arrayList);
+                        notifyDataSetChanged();
+                        changeNumberItemsListener.changed();
+                    });
+                }
+            }
+        });
+
+        holder.binding.minusCartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int adapterPosition = holder.getAdapterPosition();
+                if (adapterPosition != RecyclerView.NO_POSITION) {
+                    ArrayList<ItemsPopularModel> arrayList = new ArrayList<>(listItemSelected);
+                    managmentCart.minusItem(arrayList, adapterPosition, () -> {
+                        listItemSelected.clear();
+                        listItemSelected.addAll(arrayList);
+                        notifyDataSetChanged();
+                        changeNumberItemsListener.changed();
+                    });
+                }
+            }
+        });
     }
 
     @Override
@@ -56,51 +95,5 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Viewholder> {
             super(binding.getRoot());
             this.binding = binding;
         }
-
-        public void bind(ItemsPopularModel item) {
-            binding.titleTxt.setText(item.getTitle());
-            binding.feeEachItem.setText("$" + item.getPrice());
-            binding.totalEachItem.setText("$" + Math.round(item.getNumberInCart() * item.getPrice()));
-            binding.numberItemTxt.setText(String.valueOf(item.getNumberInCart()));
-
-            RequestOptions requestOptions = new RequestOptions().transform(new CenterCrop());
-            Glide.with(binding.getRoot())
-                    .load(item.getPicUrl().get(0))
-                    .apply(requestOptions)
-                    .into(binding.pic);
-
-            binding.plusCartBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int adapterPosition = getAdapterPosition();
-                    if (adapterPosition != RecyclerView.NO_POSITION) {
-                        ArrayList<ItemsPopularModel> arrayList = new ArrayList<>(listItemSelected);
-                        managmentCart.plusItem(arrayList, adapterPosition, () -> {
-                            listItemSelected.clear();
-                            listItemSelected.addAll(arrayList);
-                            notifyDataSetChanged();
-                            changeNumberItemsListener.changed();
-                        });
-                    }
-                }
-            });
-
-            binding.minusCartBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int adapterPosition = getAdapterPosition();
-                    if (adapterPosition != RecyclerView.NO_POSITION) {
-                        ArrayList<ItemsPopularModel> arrayList = new ArrayList<>(listItemSelected);
-                        managmentCart.minusItem(arrayList, adapterPosition, () -> {
-                            listItemSelected.clear();
-                            listItemSelected.addAll(arrayList);
-                            notifyDataSetChanged();
-                            changeNumberItemsListener.changed();
-                        });
-                    }
-                }
-            });
-        }
     }
 }
-

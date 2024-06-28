@@ -98,4 +98,11 @@ public class CartActivity extends BaseActivity {
             binding.scrollViewCart.setVisibility(View.VISIBLE);
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Cập nhật lại danh sách giỏ hàng khi quay lại từ CheckoutActivity (hoặc bất kỳ hoạt động nào khác cần cập nhật lại)
+        initCartList();
+    }
 }
