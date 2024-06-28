@@ -29,11 +29,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ĐĂNG NHẬP"
-            android:textStyle="bold"
             android:fontFamily="sans-serif-medium"
+            android:text="LOGIN"
+            android:textColor="#E290B0"
             android:textSize="32sp"
-            android:textColor="#E290B0"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -67,7 +67,7 @@
                 android:layout_gravity="end"
                 android:alpha="0.7"
                 android:padding="8dp"
-                android:text="Khách"
+                android:text="Guest"
                 android:textColor="#E290B0"
                 android:textStyle="italic|bold" />
 
@@ -96,7 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0.7"
-                android:text="Mật khẩu"
+                android:text="Password"
                 android:textStyle="bold" />
 
             <RelativeLayout
@@ -138,7 +138,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:alpha="0.7"
-                    android:text="Ghi nhớ"
+                    android:text="Memorize"
                     android:textColor="#E290B0" />
 
                 <LinearLayout
@@ -152,7 +152,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
-                        android:text="Quên mật khẩu?"
+                        android:text="Forgotten password?"
                         android:textColor="#E290B0"
                         android:textStyle="italic" />
 
@@ -169,7 +169,7 @@
                 android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="ĐĂNG NHẬP"
+                android:text="LOGIN"
 
                 app:backgroundTint="#E290B0" />
 
@@ -186,13 +186,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Chưa có tài khoản? " />
+                    android:text="Don’t you have an account?" />
 
                 <TextView
                     android:id="@+id/tvRegister"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Đăng ký ngay"
+                    android:text="Sign up"
                     android:textColor="#E290B0"
                     android:textStyle="italic" />
             </LinearLayout>

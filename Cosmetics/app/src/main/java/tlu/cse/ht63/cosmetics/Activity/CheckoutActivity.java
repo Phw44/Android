@@ -2,10 +2,12 @@ package tlu.cse.ht63.cosmetics.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -80,12 +82,6 @@ public class CheckoutActivity extends BaseActivity {
                     return;
                 }
 
-                // Kiểm tra giỏ hàng có sản phẩm hay không
-                if (productList.isEmpty()) {
-                    Toast.makeText(CheckoutActivity.this, "Giỏ hàng của bạn đang trống!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
                 // Tính tổng giá tiền
                 double totalPrice = calculateTotalPrice();
 
@@ -99,10 +95,15 @@ public class CheckoutActivity extends BaseActivity {
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                Intent intent = new Intent(CheckoutActivity.this, CartActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                finish(); // Kết thúc ProfileActivity để nó không còn trong stack
             }
         });
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -124,6 +125,7 @@ public class CheckoutActivity extends BaseActivity {
     }
 
     private void saveOrderToDatabase(String customerName, String phoneNumber, String address, double totalPrice) {
+
         DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference().child("orders");
         String orderId = ordersRef.push().getKey();
 
@@ -132,11 +134,12 @@ public class CheckoutActivity extends BaseActivity {
             productNames.add(item.getTitle());
         }
 
+        // Chuyển đổi totalPrice từ double sang String
         Order order = new Order(orderId, customerName, phoneNumber, address, productNames, String.valueOf(totalPrice));
 
         ordersRef.child(orderId).setValue(order, new DatabaseReference.CompletionListener() {
             @Override
-            public void onComplete(@NonNull DatabaseError error, @NonNull DatabaseReference ref) {
+            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                 if (error == null) {
                     // Lưu thành công
                     Toast.makeText(CheckoutActivity.this, "Đặt hàng thành công!", Toast.LENGTH_SHORT).show();
@@ -146,8 +149,10 @@ public class CheckoutActivity extends BaseActivity {
                     // Lỗi khi lưu
                     Toast.makeText(CheckoutActivity.this, "Đặt hàng thất bại. Vui lòng thử lại!", Toast.LENGTH_SHORT).show();
                     error.toException().printStackTrace();
+                    Log.e("FirebaseError", "Lỗi khi lưu đơn hàng: ", error.toException());
                 }
             }
         });
     }
+
 }

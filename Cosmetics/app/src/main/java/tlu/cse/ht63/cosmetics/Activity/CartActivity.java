@@ -1,6 +1,10 @@
 package tlu.cse.ht63.cosmetics.Activity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,13 +12,15 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import java.util.Locale;
+
 import tlu.cse.ht63.cosmetics.Adapter.CartAdapter;
 import tlu.cse.ht63.cosmetics.Helper.ManagmentCart;
 import tlu.cse.ht63.cosmetics.Model.ItemsPopularModel;
+import tlu.cse.ht63.cosmetics.R;
 import tlu.cse.ht63.cosmetics.databinding.ActivityCartBinding;
 
 public class CartActivity extends BaseActivity {
-
     private ActivityCartBinding binding;
     private ManagmentCart managmentCart;
     private double tax; // Khai báo biến tax ở mức lớp để sử dụng trong setVariable()
@@ -49,7 +55,7 @@ public class CartActivity extends BaseActivity {
         double percentTax = 0.02;
         double delivery = 10;
         tax = Math.round((managmentCart.getTotalFee() * percentTax * 100.0)) / 100.0;
-        double total = Math.round((managmentCart.getTotalFee() + tax + delivery) * 100) / 100;
+        double total = (managmentCart.getTotalFee() + tax + delivery) * 100 / 100;
         double itemTotal = Math.round(managmentCart.getTotalFee() * 100) / 100;
 
         binding.totalFeeTxt.setText("$" + itemTotal);
@@ -105,5 +111,48 @@ public class CartActivity extends BaseActivity {
         super.onResume();
         // Cập nhật lại danh sách giỏ hàng khi quay lại từ CheckoutActivity (hoặc bất kỳ hoạt động nào khác cần cập nhật lại)
         initCartList();
+    }
+
+
+    // chuyen doi ngon ngu
+    public void loadLocale() {
+        SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = prefs.getString("My_Lang", "");
+        if (!language.isEmpty()) {
+            setLocale(language);
+        }
+    }
+
+    private void setLocale(String langCode) {
+        Locale locale = new Locale(langCode);
+        Locale.setDefault(locale);
+        Resources resources = getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
+
+        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+        editor.putString("My_Lang", langCode);
+        editor.apply();
+
+        updateTexts(); // Update UI texts directly instead of recreating the activity
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        loadLocale(); // Kiểm tra và cập nhật ngôn ngữ mỗi khi MainActivity được khởi động lại
+    }
+
+
+    private void updateTexts() {
+        binding.tvCart.setText(R.string.my_cart);
+        binding.edtCoupon.setText(R.string.edtCoupon);
+        binding.btnApply.setText(R.string.btn_apply);
+        binding.textView2.setText(R.string.Subtotal);
+        binding.textView3.setText(R.string.Delivery);
+        binding.textView4.setText(R.string.tax);
+        binding.textView5.setText(R.string.total);
+        binding.checkOutBtn.setText(R.string.checkout);
     }
 }

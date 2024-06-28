@@ -1,5 +1,31 @@
 <resources>
     <string name="app_name">Cosmetics</string>
+
+    <!-- profile -->
+    <string name="text_member">Member</string>
+    <string name="update_profile">Update Profile</string>
+    <string name="settings">Settings</string>
+    <string name="about_us">About Us</string>
+    <string name="logout">Logout</string>
+
+    <!-- main -->
+    <string name="search_hint">Search here</string>
+    <string name="txt_products">Products</string>
+    <string name="txt_explorer">Explorer</string>
+    <string name="txt_cart">Cart</string>
+    <string name="txt_profile">Profile</string>
+
+
+    <!--    cart-->
+    <string name="my_cart">My Cart</string>
+    <string name="edtCoupon">Enter your Coupon</string>
+    <string name="btn_apply">Apply</string>
+    <string name="Subtotal">Subtotal</string>
+    <string name="Delivery">Delivery</string>
+    <string name="tax">Total Tax</string>
+    <string name="total">Total</string>
+    <string name="checkout">CheckOut</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
